@@ -1,0 +1,221 @@
+<style>
+
+</style>
+
+
+<div style="width:100%;height:550px;">
+
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="panel panel-default" style="height:350px; ">
+
+
+                <div class="col-md-12" style="font-size:24px;">
+                    India
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-2 col-md-offset-1">Batsman</div>
+                    <div class="col-md-2">Averge</div>
+                    <div class="col-md-2">Strike Rate</div>
+                    <div class="col-md-2">Score</div>
+                    <div class="col-md-2">Balls Faced</div>
+
+
+                </div>
+                <div ng-repeat="bat in batList">
+
+
+                    <div class="row">
+
+                        <div class="col-md-2 col-md-offset-1">{{bat.name}}</div>
+                        <div class="col-md-2">{{bat.avg}}</div>
+                        <div class="col-md-2">{{bat.str}}</div>
+                        <div class="col-md-2">{{bat.score}}</div>
+                        <div class="col-md-2">{{bat.ballFaced}}</div>
+
+
+                    </div>
+
+
+
+                </div>
+
+                <br>
+
+
+                <div class="col-md-12" style="font-size:24px;">
+                    Pakistan
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-2 col-md-offset-1">Bowler</div>
+                    <div class="col-md-2">Economy</div>
+                    <div class="col-md-2">Strike Rate</div>
+                    <div class="col-md-2">Wicket</div>
+                    <div class="col-md-2">Balls</div>
+
+
+                </div>
+                <div ng-repeat="bowl in bowlList">
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-2 col-md-offset-1">{{bowl.name}}</div>
+                        <div class="col-md-2">{{bowl.eco}}</div>
+                        <div class="col-md-2">{{bowl.str}}</div>
+                        <div class="col-md-2">{{bowl.wicket}}</div>
+                        <div class="col-md-2">{{bowl.balls}}</div>
+
+
+                    </div>
+
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <div style="height:350px; ">
+
+                <div class="panel panel-default" style="height:150px;margin-top:10px;">
+
+                    <div class="col-md-4" style="padding: 10px;">Select your Batting Style</div>
+                    <div class="col-md-8">
+                        <select class="form-control" name="" id="">
+                            <option value="Aggressive">Aggressive</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Defensive">Defensive</option>
+
+                        </select>
+
+                    </div>
+
+
+
+                </div>
+                <div class="panel panel-default" style="height:150px;margin-top:10px;">
+                    <div class="col-md-4" style="padding: 10px;">Select your Fielding Style</div>
+                    <div class="col-md-8">
+                        <select class="form-control" name="" id="">
+                            <option value="Aggressive">Aggressive</option>
+                            <option value="Moderate">Moderate</option>
+                            <option value="Defensive">Defensive</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:10px;">
+                        <div class="col-md-6">
+                            <div class="col-md-4" style="padding: 10px;">Line</div>
+                            <div class="col-md-8">
+                                <select class="form-control" name="" id="">
+                                    <option value="Aggressive">OffStump</option>
+                                    <option value="Moderate">Middle</option>
+                                    <option value="Defensive">LegStump</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-4" style="padding: 10px;">Length</div>
+                            <div class="col-md-8">
+                                <select class="form-control" name="" id="">
+                                    <option value="Aggressive">Full</option>
+                                    <option value="Moderate">Good Length</option>
+                                    <option value="Defensive">Short</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="panel panel-default" style="height:190px; ">
+
+                <div class="col-md-12" style="margin-top:20px;">
+                    Select your Batsman
+                    <br>
+                    <select ng-model="selectBat" class="form-control" name="" id="">
+                        <option value="{{bat.name}}" ng-repeat="bat in batList">{{bat.name}}</option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="col-md-12" style="margin-top:20px;">
+                    Select your Bowler
+                    <br>
+                    <select ng-model="selectBowl" class="form-control" name="" id="">
+                        <option value="{{bowl.name}}" ng-repeat="bowl in bowlList">{{bowl.name}}</option>
+
+                    </select>
+
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="col-md-8">
+            <div style="height:190px; " class="panel panel-default">
+
+                <div class="col-md-12">
+                    Commentary:
+                    <br>
+
+                    <div style="height:100px;background:grey;color:white;overflow-y: auto;" ng-model="comment"><pre style="background: grey;
+    color: white;border:0px solid grey;">{{comment}}</pre></div>
+
+
+                </div>
+                <button class="btn btn-info col-md-4 col-md-offset-6" style="margin-top:30px;" ng-click="onSimulate()">Simulate</button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+</div>
