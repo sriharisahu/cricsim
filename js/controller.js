@@ -62,33 +62,52 @@ myApp.controller('matchContrl', function ($scope, $http) {
 
     //    $scope.batList[0].score = "2";
 
-    var SC = 0;
-    var BF = 0;
+    //    var SC = 0;
+    //    var BF = 0;
+
     $scope.onSimulate = function () {
 
-
-        var cmmt = $scope.selectBowl + " is bowling an over to " + $scope.selectBat + "";
-
-
-        var res_Obj = simulateScore(SC, BF, cmmt);
+        if ($scope.selectBowl != undefined && $scope.selectBat != undefined) {
+            var cmmt = $scope.selectBowl + " is bowling an over to " + $scope.selectBat + "";
 
 
-        var currStr = ((SC / BF) * 100).toFixed(2);
-        $scope.batList[0].score = "" + res_Obj.SC;
-        $scope.batList[0].ballFaced = "" + res_Obj.BF;
-        $scope.batList[0].currStr = "" + currStr;
-        //currStr
 
-        $scope.comment = CMT + "\n" +
-            res_Obj.cmmt;
 
-        CMT = CMT + "\n" +
-            res_Obj.cmmt;
+            for (var i = 0; i < $scope.batList.length; i++) {
 
-        // score logic
 
-        // score = random(0,1) <-- hit or not  <-- how gud bowler
-        // score (hit) -- random(0,6) <-- 0,1,2,3,4,5(4) or 6
+
+                if ($scope.selectBat == $scope.batList[i].name) {
+                    var SC = parseInt($scope.batList[i].score);
+                    var BF = parseInt($scope.batList[i].ballFaced)
+                    var res_Obj = simulateScore(SC, BF, cmmt);
+                    var currStr = ((SC / BF) * 100).toFixed(2);
+
+                    $scope.batList[i].score = "" + res_Obj.SC;
+                    $scope.batList[i].ballFaced = "" + res_Obj.BF;
+                    $scope.batList[i].currStr = "" + currStr;
+
+                }
+            }
+
+            //currStr
+
+            $scope.comment = CMT + "\n" +
+                res_Obj.cmmt;
+
+            CMT = CMT + "\n" +
+                res_Obj.cmmt;
+
+            // score logic
+
+            // score = random(0,1) <-- hit or not  <-- how gud bowler
+            // score (hit) -- random(0,6) <-- 0,1,2,3,4,5(4) or 6
+        } else {
+            alert("Select Options");
+        }
+
+
+
 
     }
 
