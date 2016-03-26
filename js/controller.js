@@ -17,7 +17,7 @@ myApp.controller('cntrl', function ($scope, $http) {
 
 myApp.controller('matchContrl', function ($scope, $http) {
 
-    $scope.comment = "TEST";
+    //    $scope.comment = "TEST";
 
     $scope.batList = [
         {
@@ -25,14 +25,16 @@ myApp.controller('matchContrl', function ($scope, $http) {
             avg: "30.13",
             str: "60",
             score: "0",
-            ballFaced: "0"
+            ballFaced: "0",
+            currStr: "0"
 
         }, {
             name: "Ganguly",
             avg: "25.13",
             str: "90",
             score: "0",
-            ballFaced: "0"
+            ballFaced: "0",
+            currStr: "0"
 
         }
 
@@ -60,38 +62,28 @@ myApp.controller('matchContrl', function ($scope, $http) {
 
     //    $scope.batList[0].score = "2";
 
-
+    var SC = 0;
+    var BF = 0;
     $scope.onSimulate = function () {
-
-
-        console.log(getRandomInt(0, 6));
 
 
         var cmmt = $scope.selectBowl + " is bowling an over to " + $scope.selectBat + "";
 
-        var SC = 0;
-        for (var i = 0; i < 6; i++) {
-            var score = getRandomInt(0, 6);
 
-            if (score == 5) {
-                score = 4;
-            }
-            SC = SC + score;
+        var res_Obj = simulateScore(SC, BF, cmmt);
 
 
-
-            cmmt = cmmt + " " + score + "  ";
-
-        }
-
-
-        $scope.batList[0].score = "" + SC;
+        var currStr = ((SC / BF) * 100).toFixed(2);
+        $scope.batList[0].score = "" + res_Obj.SC;
+        $scope.batList[0].ballFaced = "" + res_Obj.BF;
+        $scope.batList[0].currStr = "" + currStr;
+        //currStr
 
         $scope.comment = CMT + "\n" +
-            cmmt;
+            res_Obj.cmmt;
 
         CMT = CMT + "\n" +
-            cmmt;
+            res_Obj.cmmt;
 
         // score logic
 
@@ -103,6 +95,31 @@ myApp.controller('matchContrl', function ($scope, $http) {
 
 });
 
+function simulateScore(tmp_SC, tmp_BF, tmp_cmmt) {
+    var obj = {};
+
+    for (var i = 0; i < 6; i++) {
+
+        var hit = getRandomInt(0, 1);
+        var score = getRandomInt(0, 6);
+
+        if (score == 5) {
+            score = 4;
+        }
+        tmp_SC = tmp_SC + hit * score;
+        tmp_BF = tmp_BF + 1;
+
+        tmp_cmmt = tmp_cmmt + " " + hit * score + "  ";
+
+    }
+
+    obj.SC = tmp_SC;
+    obj.BF = tmp_BF;
+    obj.cmmt = tmp_cmmt;
+
+    return obj;
+
+}
 
 
 function getRandomInt(min, max) {

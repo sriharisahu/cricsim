@@ -1,0 +1,39 @@
+<div>
+    <div class="col-md-12" style="font-size:24px;background: #4aa3df;
+    color: white;
+    padding: 5px;">
+        India
+
+    </div>
+
+
+    <div class="row">
+
+        <div class="col-md-2 col-md-offset-1">Batsman</div>
+        <!--        <div class="col-md-2">Averge</div>-->
+        <!--        <div class="col-md-2">Strike Rate</div>-->
+        <div class="col-md-2">Score</div>
+        <div class="col-md-2">Balls Faced</div>
+        <div class="col-md-2">Strike Rate</div>
+
+
+    </div>
+    <div ng-repeat="bat in batList">
+
+
+        <div class="row">
+
+            <div class="col-md-2 col-md-offset-1">{{bat.name}}</div>
+            <!--            <div class="col-md-2">{{bat.avg}}</div>-->
+            <!--            <div class="col-md-2">{{bat.str}}</div>-->
+            <div class="col-md-2">{{bat.score}}</div>
+            <div class="col-md-2">{{bat.ballFaced}}</div>
+            <div class="col-md-2">{{bat.currStr}}</div>
+
+
+        </div>
+
+
+
+    </div>
+</div>
